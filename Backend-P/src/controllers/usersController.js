@@ -80,6 +80,8 @@ const getCoursesOfUser = async (req, res) => {
 }
 
 const postUser = async (req, res) => {
+  console.log('POST USER:');
+  console.log(req.body);
   const { name, lastName, birthday, admin } = req.body;
   try {
     let code = name.slice(0, 3) + lastName.slice(0, 3) + birthday.slice(0, 2);
