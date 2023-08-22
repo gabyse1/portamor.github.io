@@ -113,6 +113,9 @@ const postUser = async (req, res) => {
 
 const postInscription = async (req, res) => {
   const { userId, courseId } = req.params;
+  console.log('********************');
+  console.log(req.params);
+  console.log('++++++++++++++++++++');
   try {
     const userFound = await userService.userById(userId);
     if (userFound.length) {
