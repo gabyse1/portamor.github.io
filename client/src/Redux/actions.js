@@ -43,6 +43,7 @@ export const getUsersById = (id) => async (dispatch) => {
 export const getUsers = () => async (dispatch) => {
   try {
     const response = await axios.get(`/users`);
+    console.log('USERS');
     dispatch({ type: 'GET_USERS_SUCCESS', payload: response.data.data });
   } catch (error) {
     dispatch({ type: 'GET_USERS_SUCCESS', payload: [] });
@@ -60,6 +61,7 @@ export const deleteUser = (userId) => async (dispatch) => {
 
 export const inscribeUser = (userId, courseId, accessToken, user, courseDetail) => async () => {
   try {
+    console.log('INSCRIBE USER USERS');
     const response = await axios.post(`/users/inscription/${userId}/${courseId}`, {}, {
       headers: {
         'Content-Type': 'application/json',
@@ -219,6 +221,7 @@ export function getVideoById(id) {
 }
 
 export function postUser(payload) {
+  console.log('CREAR USUARIO');
   return async function (dispatch) {
     const response = await axios.post("/users", payload);
     return response;
