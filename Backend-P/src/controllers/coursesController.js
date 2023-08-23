@@ -26,6 +26,7 @@ const postCourse = async (req, res) => {
 
 const getAllCourses = async (req, res) => {
   try {
+    console.log('API - GET COURSES');
     const { page, size } = req.query;
 
     const courses = await courseService.getAllCourses(page, size);
