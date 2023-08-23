@@ -22,6 +22,8 @@ const getAllCourses = async (page, size) => {
     offset: (page - 1) * size
   });
 
+  console.log(allCoursesFound);
+
   return allCoursesFound;
 };
 
