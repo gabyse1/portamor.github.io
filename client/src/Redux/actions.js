@@ -3,11 +3,14 @@ import * as actions   from "../constants/actionsContants"
 import * as constants from "../constants";
 import Swal from "sweetalert2";
 
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+axios.defaults.baseURL = process.env.APP_ENV === "production"
+    ? process.env.REACT_APP_BASE_URL
+    : `http://localhost:3001${process.env.REACT_APP_BASE_URL}`;
 
 export function getCourses(page, size) {
   return async function (dispatch) {
     try {
+      console.log('FRONTEND - GET COURSES');
       const { data } = await axios.get(`/courses?page=${page}&size=${size}`);
 
       return dispatch({
@@ -43,7 +46,6 @@ export const getUsersById = (id) => async (dispatch) => {
 export const getUsers = () => async (dispatch) => {
   try {
     const response = await axios.get(`/users`);
-    console.log('USERS');
     dispatch({ type: 'GET_USERS_SUCCESS', payload: response.data.data });
   } catch (error) {
     dispatch({ type: 'GET_USERS_SUCCESS', payload: [] });
@@ -61,7 +63,6 @@ export const deleteUser = (userId) => async (dispatch) => {
 
 export const inscribeUser = (userId, courseId, accessToken, user, courseDetail) => async () => {
   try {
-    console.log('INSCRIBE USER USERS');
     const response = await axios.post(`/users/inscription/${userId}/${courseId}`, {}, {
       headers: {
         'Content-Type': 'application/json',
@@ -221,7 +222,7 @@ export function getVideoById(id) {
 }
 
 export function postUser(payload) {
-  console.log('CREAR USUARIO');
+  console.log('FRONTEND - CREAR USUARIO');
   return async function (dispatch) {
     const response = await axios.post("/users", payload);
     return response;
