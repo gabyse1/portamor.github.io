@@ -3,7 +3,7 @@ import * as actions   from "../constants/actionsContants"
 import * as constants from "../constants";
 import Swal from "sweetalert2";
 
-axios.defaults.baseURL = process.env.APP_ENV === "production"
+axios.defaults.baseURL = process.env.NODE_ENV === "production"
     ? process.env.REACT_APP_BASE_URL
     : `http://localhost:3001${process.env.REACT_APP_BASE_URL}`;
 
